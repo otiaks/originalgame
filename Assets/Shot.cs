@@ -1,14 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Shot: MonoBehaviour {
-
-	public GameObject Bullet;
-	GameObject bulletclone;
-
-	public Transform tip;
-	public float speed;
-
+public class Shot : MonoBehaviour {
+	public GameObject bullet; //GameObject型変数bulletを宣言
+	public Transform spawn;   //Transform型変数spawnを宣言
+	public float speed ;
 	// Use this for initialization
 	void Start () {
 	
@@ -16,13 +12,20 @@ public class Shot: MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey (KeyCode.Space)) {
-			Shoot();
+		if(Input.GetMouseButtonDown(0)){
+			//マウスが左クリックされた時
+			shot(); //Shot関数を実行
 		}
 	}
 
-	void Shoot(){
-		bulletclone = GameObject.Instantiate (Bullet, tip.position, tip.rotation)as GameObject;
-		bulletclone.GetComponent<Rigidbody>().AddForce(tip.forward*speed);
+	void shot(){
+		GameObject obj = GameObject.Instantiate (bullet);
+		obj.transform.position = spawn.position;
+		obj.GetComponent<Rigidbody>().AddForce (-transform.up * speed);
 	}
+
+
+
 }
+
+
