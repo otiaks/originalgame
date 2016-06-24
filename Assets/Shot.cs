@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 
 public class Shot : MonoBehaviour {
-	public GameObject bullet; //GameObject型変数bulletを宣言
-	public Transform spawn;   //Transform型変数spawnを宣言
+	public GameObject bullet; 
+	public Transform spawn;   
 	public float speed ;
+	public AudioSource gunSound;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -13,31 +15,22 @@ public class Shot : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetMouseButtonDown(0)){
-			shot(); 
+		if (Input.GetMouseButtonDown (0)) {
+			shot (); 
+			gunSound.Play ();
 		}
-
 	}
 
+/*
+	public void StartButton(){
+		shot(); 
+		gunSound.Play ();
+	}
+*/		
 	void shot(){
 		GameObject obj = GameObject.Instantiate(bullet);
 		obj.transform.position = spawn.position;
-		obj.GetComponent<Rigidbody>().AddForce (-transform.up * speed);
-		//obj.transform.position += -Vector3.up * speed * Time.deltaTime;
-
-		Ray ray = new Ray(obj.transform.position, Vector3.down);
-		RaycastHit hit;
-
-		if (Physics.Raycast (ray, out hit, 200)){
-			Debug.DrawLine (ray.origin, hit.point, Color.red);
-
-
-			if (hit.collider.tag == "special") {
-				//Vector3.zero;
-				//Vector3 = new Vector3 (1, 1, 1);
-				obj.GetComponent<Rigidbody>().AddForce (transform.forward * speed);
-			}
-		}
+		obj.GetComponent<Rigidbody>().velocity = new Vector3 (1, 0, 0)*speed;
 	}
 
 }
