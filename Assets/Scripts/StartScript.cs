@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class StartScript : MonoBehaviour {
-
+	public AudioSource selct;
 	void Start () {
 		
 	}
@@ -13,6 +13,7 @@ public class StartScript : MonoBehaviour {
 	}
 
 	public void startgame(){
+		selct.Play ();
 		Application.LoadLevel ("main");
 		//FadeManager.Instance.LoadLevel("Scene2",1.0f);
 	}
