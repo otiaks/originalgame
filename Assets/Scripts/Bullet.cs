@@ -32,7 +32,11 @@ public class Bullet : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.tag == "Enemy") {
 			Bomb.Play ();
+			Invoke ("clear", 2.0f);
 		}
 	}
 
+	void clear(){
+		Application.LoadLevel ("Clear");
+	}
 }
