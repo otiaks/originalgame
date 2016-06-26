@@ -4,7 +4,7 @@ using System.Collections;
 public class Bullet : MonoBehaviour {
 	public GameObject bullet;
 	public float speed;
-
+	public AudioSource Bomb;
 	// Use this for initialization
 	void Start () {
 		
@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour {
 
 			if (hitdown.collider.tag == "Panel") {
 				GetComponent<Rigidbody> ().velocity = new Vector3 (1, 0, 0) * speed;
-			} else if (hitdown.collider.tag == "special") {
+			} else if (hitdown.collider.tag == "Special") {
 				GetComponent<Rigidbody> ().velocity = new Vector3 (0, 0, 1) * speed;
 			}
 		}
@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.tag == "Enemy") {
-			Destroy (this.gameObject);
+			Bomb.Play ();
 		}
 	}
 

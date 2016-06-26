@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Shot : MonoBehaviour {
 	public GameObject bullet; 
-	public Transform spawn;   
+	public GameObject spawn;   
 	public float speed ;
 	public AudioSource gunSound;
 
@@ -15,12 +15,7 @@ public class Shot : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		/*
-		if (Input.GetMouseButtonDown (0)) {
-			shot (); 
-			gunSound.Play ();
-		}
-		*/
+
 	}
 
 	public void StartButton(){
@@ -30,7 +25,7 @@ public class Shot : MonoBehaviour {
 		
 	void shot(){
 		GameObject obj = GameObject.Instantiate(bullet);
-		obj.transform.position = spawn.position;
+		obj.transform.position = spawn.transform.position;
 		obj.GetComponent<Rigidbody>().velocity = new Vector3 (1, 0, 0)*speed;
 	}
 

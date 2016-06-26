@@ -4,7 +4,7 @@ using System.Collections;
 public class Enemy : MonoBehaviour {
 	
 public GameObject explosion;
-	public AudioSource Bomb;
+
 
 
 	// Use this for initialization
@@ -19,9 +19,10 @@ public GameObject explosion;
 
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.tag == "bullet") {
+			
 			Destroy (this.gameObject);
 			Instantiate (explosion, transform.position, Quaternion.identity);
-			Bomb.Play ();
+
 		}
 	}
 
